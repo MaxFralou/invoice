@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Накладная</title>
+    <style>
+        body {
+            font-size: 10.8px;
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 210mm;
+            max-height: 297mm;
+            margin: 0 auto;
+            color: #1f2328;
+        }
+
+        p {
+            margin: 6px 0 6px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            height: 5mm;
+            border: 1px solid black;
+        }
+
+        .header-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 4mm;
+        }
+
+        .main-wrapper {
+            margin: 0 17.5mm 0 17.5mm;
+        }
+
+        .header-table {
+            margin-top: 20mm;
+            width: 65mm;
+            height: 10mm;
+            text-align: center;
+        }
+
+        .date {
+            display: flex;
+            margin-top: 27.5mm;
+            margin-left: 25mm;
+            gap: 64mm;
+        }
+
+        .header-desc {
+            width: 175mm;
+            margin: 3.5mm 0 3.5mm 0;
+            border-bottom: 1px solid black;
+        }
+
+        .header-price {
+            margin-top: 12mm;
+        }
+
+        .table-caption {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .main-table {
+            margin-top: 10mm;
+            margin-bottom: 4mm;
+            width: 175mm;
+            text-align: center;
+        }
+
+        .name {
+            width: 45mm;
+            height: 15mm;
+        }
+
+        .about-order {
+            text-align: start;
+            height: 10mm;
+        }
+
+        .total {
+            text-align: start;
+        }
+
+        .desc-main-table {
+            font-size: 8px;
+        }
+
+        .finish {
+            display: flex;
+            gap: 6px;
+        }
+
+        .finish-title {
+            font-weight: bold;
+        }
+
+        .italic-1 {
+            position: relative;
+            width: 107mm;
+            border-bottom: 1px solid black;
+            font-style: italic;
+        }
+
+        .italic-1::after {
+            content: '(прописью)';
+            position: absolute;
+            top: 11.5px;
+            left: 50%;
+            font-style: italic;
+            font-size: 8px;
+        }
+
+        .italic-2 {
+            position: relative;
+            width: 17.5mm;
+            border-bottom: 1px solid black;
+            margin-left: 6mm;
+            font-style: italic;
+        }
+
+        .italic-2::after {
+            content: '(цифрами)';
+            position: absolute;
+            top: 11.5px;
+            left: 10px;
+            font-style: italic;
+            font-size: 8px;
+        }
+
+        .italic-3 {
+            position: relative;
+            width: 99mm;
+            border-bottom: 1px solid black;
+            font-style: italic;
+        }
+
+        .italic-3::after {
+            content: '(прописью)';
+            position: absolute;
+            top: 11.5px;
+            left: 50%;
+            font-style: italic;
+            font-size: 8px;
+        }
+
+        .italic-4 {
+            position: relative;
+            flex-grow: 1;
+            border-bottom: 1px solid black;
+        }
+
+        .italic-4::after {
+            content: '(должность, фамилия, инициалы, подпись)';
+            position: absolute;
+            top: 11.5px;
+            left: 30%;
+            font-style: italic;
+            font-size: 8px;
+        }
+
+        .italic-5 {
+            position: relative;
+            flex-grow: 1;
+            border-bottom: 1px solid black;
+        }
+
+        .italic-5::after {
+            content: '(номер, дата)';
+            position: absolute;
+            top: 11.5px;
+            left: 45%;
+            font-style: italic;
+            font-size: 8px;
+        }
+
+        .italic-6 {
+            position: relative;
+            flex-grow: 1;
+            border-bottom: 1px solid black;
+        }
+
+        .italic-6::after {
+            content: '(наименование организации)';
+            position: absolute;
+            top: 11.5px;
+            left: 40%;
+            font-style: italic;
+            font-size: 8px;
+        }
+
+        .italic-7 {
+            position: relative;
+            flex-grow: 1;
+            border-bottom: 1px solid black;
+        }
+
+        .italic-7::after {
+            content: '(должность, фамилия, инициалы, подпись)';
+            position: absolute;
+            top: 11.5px;
+            left: 35%;
+            font-style: italic;
+            font-size: 8px;
+        }
+
+        .italic {
+            flex-grow: 1;
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-wrapper">
+        <div>УНП</div>
+        <table class="header-table">
+
+            <tr>
+                <th>Грузоотправитель</th>
+                <th>Грузополучатель</th>
+            </tr>
+
+            <tr>
+                <td>291733545</td>
+                <td>193630204</td>
+            </tr>
+        </table>
+    </div>
+    <div class="date">
+        <div>ЭЕ0553061</div>
+        <div>20.05.2024</div>
+    </div>
+    <div class="main-wrapper">
+        <p class="header-desc"><b>Грузоотправитель</b> ИП Лаптева Юлия Виктовровна, 225328 РБ, Брестская обл.,
+            Барановичский р-н, д.
+            Гречихи, ул. Приозёрная 4</p>
+        <p class="header-desc"><b>Грузополучатель</b> ООО ИМВБРБ 220073, РБ, г.Минск, ул.Скрыганова, д. 6А, пом. 8, офис
+            35</p>
+        <p class="header-desc"><b>Основание отпуска</b> Сборочное задание №1715019040 №1716528456</p>
+        <p class="header-desc header-price"><b>Основание для согласования цены</b> Прейскурант №25020469 от 11.05.2024
+        </p>
+
+        <table class="main-table">
+            <caption class="table-caption">I. Товарный раздел</caption>
+            <tr>
+                <td class="name desc-main-table">Наименование товара</td>
+                <td class="desc-main-table">Единица измерения</td>
+                <td class="desc-main-table">Количество</td>
+                <td class="desc-main-table">Цена, руб. коп.</td>
+                <td class="desc-main-table">Стоимость, руб. коп.</td>
+                <td class="desc-main-table">Ставка НДС, %</td>
+                <td class="desc-main-table">Сумма НДС, руб. коп.</td>
+                <td class="desc-main-table">Стоимость с НДС, руб. коп.</td>
+                <td class="desc-main-table">Примечание</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+            <tbody id="order-table-body">
+            </tbody>
+            <tfoot id="order-table-footer">
+            </tfoot>
+        </table>
+
+        <div class="finish">
+            <p class="finish-title"><b>Всего сумма НДС</b></p>
+            <p class="italic-1" id="total-nds-text">пятнадцать</p>
+            <p><i>руб.</i></p>
+            <p class="italic-2" id="total-nds-number">47</p>
+            <p><i>коп.</i></p>
+        </div>
+        <div class="finish">
+            <p class="finish-title"><b>Всего стоимость с НДС</b></p>
+            <p class="italic-3" id="total-final-price-text">семьдесят семь</p>
+            <p><i>руб.</i></p>
+            <p class="italic-2" id="total-final-price-number">35</p>
+            <p><i>коп.</i></p>
+        </div>
+        <div class="finish">
+            <p class="finish-title">Отпуск разрешил</p>
+            <p class="italic-4">ИП Лаптева Ю.В.</p>
+        </div>
+        <div class="finish">
+            <p class="finish-title">Сдал грузоотправитель</p>
+            <p class="italic-4">ИП Лаптева Ю.В.</p>
+        </div>
+        <div class="finish">
+            <p class="finish-title">Товар к доставке принял</p>
+            <p class="italic-4">ИП Лаптева Ю.В.</p>
+        </div>
+        <div class="finish">
+            <p class="finish-title">по доверенности</p>
+            <p class="italic-5"></p>
+        </div>
+        <div class="finish">
+            <p class="finish-title">выданной</p>
+            <p class="italic-6"></p>
+        </div>
+        <div class="finish">
+            <p class="finish-title">Принял грузополучатель</p>
+            <p class="italic-7"></p>
+        </div>
+        <div class="finish">
+            <p class="finish-title">С товаром переданы документы</p>
+            <p class="italic">ТН №ЭЕ0553061 от 20.05.2024</p>
+        </div>
+    </div>
+    <script>
+        const items = [
+            {
+                name: '1715019040 Ткань льняная отрез 1 м, арт. 2-1, манго',
+                unit: 'шт',
+                quantity: 1,
+                finalPrice: 31.51,
+                note: ''
+            },
+            {
+                name: '1716528456 Ткань льняная отрез 1.5 м, арт. 2-15, светло-персиковый',
+                unit: 'шт',
+                quantity: 1,
+                finalPrice: 45.84,
+                note: ''
+            },
+        ];
+        function calculateItemDetails(finalPrice, quantity) {
+            const NDS = 0.2;
+            const NDSedPrice = Math.round(finalPrice * NDS * 100) / 100;
+            const price = Math.round((finalPrice - NDSedPrice) / quantity * 100) / 100;
+            const totalPrice = Math.round(price * quantity * 100) / 100;
+
+            return {
+                price: price,
+                totalPrice: totalPrice,
+                NDS: NDS,
+                NDSedPrice: NDSedPrice,
+                finalPrice: finalPrice
+            };
+        }
+
+        function generateOrderRow(item) {
+            return `
+                <tr>
+                    <td class="about-order">${item.name}</td>
+                    <td>${item.unit}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.price.toFixed(2)}</td>
+                    <td>${item.totalPrice.toFixed(2)}</td>
+                    <td>${(item.NDS * 100).toFixed(0)}</td>
+                    <td>${item.NDSedPrice.toFixed(2)}</td>
+                    <td>${item.finalPrice.toFixed(2)}</td>
+                    <td>${item.note || ''}</td>
+                </tr>
+            `;
+        }
+
+        function generateTotalRow(totals) {
+            return `
+                <tr>
+                    <td class="total">&nbsp;ИТОГО</td>
+                    <td></td>
+                    <td>${totals.totalQuantity}</td>
+                    <td></td>
+                    <td>${totals.totalPrice.toFixed(2)}</td>
+                    <td></td>
+                    <td>${totals.totalNDSedPrice.toFixed(2)}</td>
+                    <td>${totals.totalFinalPrice.toFixed(2)}</td>
+                    <td></td>
+                </tr>
+            `;
+        }
+
+        function toReadable(number) {
+            let numberToString = number.toString();
+
+            let upToTen = function (num) {
+                switch (num) {
+                    case '1':
+                        return 'один';
+                    case '2':
+                        return 'два';
+                    case '3':
+                        return 'три';
+                    case '4':
+                        return 'четыре';
+                    case '5':
+                        return 'пять';
+                    case '6':
+                        return 'шесть';
+                    case '7':
+                        return 'семь';
+                    case '8':
+                        return 'восемь';
+                    case '9':
+                        return 'девять';
+                }
+                return num;
+            };
+
+            let upToTwenty = function (num) {
+                switch (num) {
+                    case '10':
+                        return 'десять';
+                    case '11':
+                        return 'одинадцать';
+                    case '12':
+                        return 'двенадцать';
+                    case '13':
+                        return 'тринадцать';
+                    case '14':
+                        return 'четырнадцать';
+                    case '15':
+                        return 'пятнадцать';
+                    case '16':
+                        return 'шестнадцать';
+                    case '17':
+                        return 'семьнадцать';
+                    case '18':
+                        return 'восемнадцать';
+                    case '19':
+                        return 'девятнадцать';
+                    case '20':
+                        return 'двадцать';
+                };
+                return num;
+            };
+
+            let tens = function (num) {
+                switch (num) {
+                    case '2':
+                        return 'двадцать';
+                    case '3':
+                        return 'тридцать';
+                    case '4':
+                        return 'сорок';
+                    case '5':
+                        return 'пятьдесят';
+                    case '6':
+                        return 'шестьдесят';
+                    case '7':
+                        return 'семьдесят';
+                    case '8':
+                        return 'восемьдесят';
+                    case '9':
+                        return 'девяносто';
+                };
+                return num;
+            }
+
+            let hundreds = function (num) {
+                switch (num) {
+                    case '2':
+                        return 'сти';
+                    case '3':
+                    case '4':
+                        return 'ста';
+                    default:
+                        return 'сот';
+                }
+            }
+
+            if (number < 10) {
+                if (number == 0) {
+                    return 'ноль';
+                }
+                return upToTen(numberToString);
+            } else if (number >= 10 && number <= 20) {
+                return upToTwenty(numberToString);
+            } else if (number >= 21 && number <= 99) {
+                if (numberToString.slice(1) == '0') {
+                    return `${tens(numberToString[0])}`;
+                }
+                return `${tens(numberToString[0])} ${upToTen(numberToString[1])}`;
+            } else if (number >= 100 && number <= 999) {
+                if (numberToString.slice(1, 3) == '00') {
+                    return `${upToTen(numberToString[0])}${hundreds(numberToString[0])}`;
+                } else if (numberToString.slice(1, 2) == '0') {
+                    return `${upToTen(numberToString[0])}${hundreds(numberToString[0])} ${upToTen(numberToString[2])}`;
+                } else if (numberToString.slice(1, 2) < '2') {
+                    return `${upToTen(numberToString[0])}${hundreds(numberToString[0])} ${upToTwenty(numberToString.slice(1))}`;
+                } else if (numberToString.slice(2) == '0') {
+                    return `${upToTen(numberToString[0])}${hundreds(numberToString[0])} ${tens(numberToString[1])}`;
+                } else {
+                    return `${upToTen(numberToString[0])}${hundreds(numberToString[0])} ${tens(numberToString[1])} ${upToTen(numberToString[2])}`;
+                }
+            }
+        };
+
+        const orderTableBody = document.getElementById('order-table-body');
+        const orderTableFooter = document.getElementById('order-table-footer');
+
+        let totals = {
+            totalQuantity: 0,
+            totalPrice: 0,
+            totalNDSedPrice: 0,
+            totalFinalPrice: 0
+        };
+
+        items.forEach(item => {
+            const details = calculateItemDetails(item.finalPrice, item.quantity);
+            const itemWithDetails = { ...item, ...details };
+            orderTableBody.innerHTML += generateOrderRow(itemWithDetails);
+
+            totals.totalQuantity += item.quantity;
+            totals.totalPrice += details.totalPrice;
+            totals.totalNDSedPrice += details.NDSedPrice;
+            totals.totalFinalPrice += item.finalPrice;
+        });
+
+        orderTableFooter.innerHTML = generateTotalRow(totals);
+
+        const totalNDSText = document.getElementById('total-nds-text');
+        const totalNDSNumber = document.getElementById('total-nds-number');
+        const totalFinalPriceText = document.getElementById('total-final-price-text');
+        const totalFinalPriceNumber = document.getElementById('total-final-price-number');
+
+        totalNDSText.textContent = toReadable(Math.floor(totals.totalNDSedPrice));
+        totalNDSNumber.textContent = totals.totalNDSedPrice.toFixed(2).split('.')[1];
+        totalFinalPriceText.textContent = toReadable(Math.floor(totals.totalFinalPrice));
+        totalFinalPriceNumber.textContent = totals.totalFinalPrice.toFixed(2).split('.')[1];
+
+
+
+    </script>
+</body>
+
+</html>
