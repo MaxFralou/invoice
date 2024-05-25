@@ -339,19 +339,20 @@
             },
         ];
         function calculateItemDetails(finalPrice, quantity) {
-            const NDS = 0.2;
-            const NDSedPrice = Math.round(finalPrice * NDS * 100) / 100;
-            const price = Math.round((finalPrice - NDSedPrice) / quantity * 100) / 100;
-            const totalPrice = Math.round(price * quantity * 100) / 100;
+            const NDS_RATE = 0.2;
+            const NDSedPrice = (finalPrice * NDS_RATE);
+            const price = (finalPrice - NDSedPrice) / quantity;
+            const totalPrice = price * quantity;
 
             return {
-                price: price,
-                totalPrice: totalPrice,
-                NDS: NDS,
-                NDSedPrice: NDSedPrice,
-                finalPrice: finalPrice
+                price: parseFloat(price.toFixed(2)),
+                totalPrice: parseFloat(totalPrice.toFixed(2)),
+                NDS: NDS_RATE,
+                NDSedPrice: parseFloat(NDSedPrice.toFixed(2)),
+                finalPrice: parseFloat(finalPrice.toFixed(2))
             };
         }
+
 
         function generateOrderRow(item) {
             return `
@@ -386,121 +387,38 @@
         }
 
         function toReadable(number) {
-            let numberToString = number.toString();
-
-            let upToTen = function (num) {
-                switch (num) {
-                    case '1':
-                        return 'один';
-                    case '2':
-                        return 'два';
-                    case '3':
-                        return 'три';
-                    case '4':
-                        return 'четыре';
-                    case '5':
-                        return 'пять';
-                    case '6':
-                        return 'шесть';
-                    case '7':
-                        return 'семь';
-                    case '8':
-                        return 'восемь';
-                    case '9':
-                        return 'девять';
-                }
-                return num;
-            };
-
-            let upToTwenty = function (num) {
-                switch (num) {
-                    case '10':
-                        return 'десять';
-                    case '11':
-                        return 'одинадцать';
-                    case '12':
-                        return 'двенадцать';
-                    case '13':
-                        return 'тринадцать';
-                    case '14':
-                        return 'четырнадцать';
-                    case '15':
-                        return 'пятнадцать';
-                    case '16':
-                        return 'шестнадцать';
-                    case '17':
-                        return 'семьнадцать';
-                    case '18':
-                        return 'восемнадцать';
-                    case '19':
-                        return 'девятнадцать';
-                    case '20':
-                        return 'двадцать';
-                };
-                return num;
-            };
-
-            let tens = function (num) {
-                switch (num) {
-                    case '2':
-                        return 'двадцать';
-                    case '3':
-                        return 'тридцать';
-                    case '4':
-                        return 'сорок';
-                    case '5':
-                        return 'пятьдесят';
-                    case '6':
-                        return 'шестьдесят';
-                    case '7':
-                        return 'семьдесят';
-                    case '8':
-                        return 'восемьдесят';
-                    case '9':
-                        return 'девяносто';
-                };
-                return num;
-            }
-
-            let hundreds = function (num) {
-                switch (num) {
-                    case '2':
-                        return 'сти';
-                    case '3':
-                    case '4':
-                        return 'ста';
-                    default:
-                        return 'сот';
-                }
-            }
+            const units = ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'];
+            const teens = ['десять', 'одинадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+            const tens = ['двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+            const hundreds = ['сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
 
             if (number < 10) {
-                if (number == 0) {
-                    return 'ноль';
+                return units[number];
+            } else if (number < 20) {
+                return teens[number - 10];
+            } else if (number < 100) {
+                if (number % 10 === 0) {
+                    return tens[Math.floor(number / 10) - 2];
                 }
-                return upToTen(numberToString);
-            } else if (number >= 10 && number <= 20) {
-                return upToTwenty(numberToString);
-            } else if (number >= 21 && number <= 99) {
-                if (numberToString.slice(1) == '0') {
-                    return `${tens(numberToString[0])}`;
-                }
-                return `${tens(numberToString[0])} ${upToTen(numberToString[1])}`;
-            } else if (number >= 100 && number <= 999) {
-                if (numberToString.slice(1, 3) == '00') {
-                    return `${upToTen(numberToString[0])}${hundreds(numberToString[0])}`;
-                } else if (numberToString.slice(1, 2) == '0') {
-                    return `${upToTen(numberToString[0])}${hundreds(numberToString[0])} ${upToTen(numberToString[2])}`;
-                } else if (numberToString.slice(1, 2) < '2') {
-                    return `${upToTen(numberToString[0])}${hundreds(numberToString[0])} ${upToTwenty(numberToString.slice(1))}`;
-                } else if (numberToString.slice(2) == '0') {
-                    return `${upToTen(numberToString[0])}${hundreds(numberToString[0])} ${tens(numberToString[1])}`;
+                return `${tens[Math.floor(number / 10) - 2]} ${units[number % 10]}`;
+            } else if (number < 1000) {
+                let remainder = number % 100;
+                let hundredsPart = hundreds[Math.floor(number / 100) - 1];
+
+                if (remainder === 0) {
+                    return hundredsPart;
+                } else if (remainder < 10) {
+                    return `${hundredsPart} ${units[remainder]}`;
+                } else if (remainder < 20) {
+                    return `${hundredsPart} ${teens[remainder - 10]}`;
                 } else {
-                    return `${upToTen(numberToString[0])}${hundreds(numberToString[0])} ${tens(numberToString[1])} ${upToTen(numberToString[2])}`;
+                    if (remainder % 10 === 0) {
+                        return `${hundredsPart} ${tens[Math.floor(remainder / 10) - 2]}`;
+                    }
+                    return `${hundredsPart} ${tens[Math.floor(remainder / 10) - 2]} ${units[remainder % 10]}`;
                 }
             }
-        };
-
+        }
         const orderTableBody = document.getElementById('order-table-body');
         const orderTableFooter = document.getElementById('order-table-footer');
 
